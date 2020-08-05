@@ -1,0 +1,523 @@
+﻿{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+   
+    <title>Ecology</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Travello template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+    <script src="{% static 'js/mapdata2.js' %}"></script>
+    <script src="{% static 'js/worldmap2.js' %}"></script>
+
+</head>
+<body>
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            <div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+                                <div class="logo"><a href="">Ecology</a></div>
+                                <nav class="main_nav">
+                                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                                        <li><a href="home">Home</a></li>
+                                        <li><a href="/quiz">Quiz</a></li>
+                                        <li><a href="protohome">Prototypes</a></li>
+                                        <li class="active"><a href="Essay">Essays</a></li>
+                                        {% if user.is_authenticated %}
+                                        <li style="color:white">Hello, {{user.first_name}}</li>
+                                        <li><a href="accounts/logout">Logout</a></li>
+                                        {% else %}
+                                        <li><a href="accounts/register">Register</a></li>
+                                        <li><a href="accounts/login">Login</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                                <div class="header_phone ml-auto">Call us: 7358505477 </div>
+
+                                <!-- Hamburger -->
+
+                                <div class="hamburger ml-auto">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header_social d-flex flex-row align-items-center justify-content-start">
+                <ul class="d-flex flex-row align-items-start justify-content-start">
+                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Menu -->
+
+        <div class="menu">
+            <div class="menu_header d-flex flex-row align-items-center justify-content-start">
+                <div class="menu_logo"><a href="index.html">Travello</a></div>
+                <div class="menu_close_container ml-auto"><div class="menu_close"><div></div><div></div></div></div>
+            </div>
+            <div class="menu_content">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="about.html">Prototypes</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="accounts/logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="accounts/register">Register</a></li>
+                    <li><a href="accounts/login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="menu_social">
+                <div class="menu_phone ml-auto">Call us: 00-56 445 678 33</div>
+                <ul class="d-flex flex-row align-items-start justify-content-start">
+                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Home -->
+
+        <div class="home">
+
+            <!-- Home Slider -->
+            <div class="home_slider_container">
+                <div class="owl-carousel owl-theme home_slider">
+
+                    <!-- Slide -->
+                    <div class="owl-item">
+                        <div class="background_image" style="        background-image: url(static/images/airphome.jpg )"></div>
+                        <div class="home_slider_content_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="home_slider_content">
+                                            <div class="home_title"><h2>Air Pollution</h2></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide -->
+                    <div class="owl-item">
+                        <div class="background_image" style="background-image:url(static/images/eco3.jpg)"></div>
+                        <div class="home_slider_content_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="home_slider_content">
+                                            <div class="home_title"><h2>Let's Conserve Energy</h2></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide -->
+                    <div class="owl-item">
+                        <div class="background_image" style="background-image:url(static/images/eco3.jpg)"></div>
+                        <div class="home_slider_content_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="home_slider_content">
+                                            <div class="home_title"><h2>Let's Conserve Energy</h2></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------------------------------------------------------------------------------------------->
+
+        <br /><br />
+        <div class="news" id="news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8">
+                        <div class="news_container">
+
+
+
+
+                            <!-- News Post -->
+                            <div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
+                                <div class="news_post_image"><img src="static/images/airp.jpg" alt=""></div>
+                                <div class="news_post_content">
+                                    <div class="news_post_date d-flex flex-row align-items-end justify-content-start">
+                                        <div>10</div>
+                                        <div>april</div>
+                                    </div>
+                                    <div class="news_post_title"><a href="#">Air Pollution</a></div>
+                                    <div class="news_post_category">
+                                        <ul>
+                                            <li><a href="#">pollution</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="news_post_text">
+                                        <p>Is the air we breathe everyday safe enough?</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <h2 style="text-align: center;"><span style="color: #ff6600;"><strong><u>Air Pollution</u></strong></span></h2>
+        <h2><span style="color: #ff6600;"><strong>&nbsp;</strong></span></h2>
+        <p style="padding-left: 30px;"><span style="color: #ff6600;"><b>Air pollution is one of the biggest threats for environmental and affects everyone:humans,animals,crops,cities,forests,aquatic ecosystems.It can be defined as alteration of air quality that can be characterized by measurements of chemical,biological or physical pollutants in the air.It is mainly caused by the presence of toxic substances in the atmosphere.Air pollution is a gas(or a liquid or solid dispersed through ordinary air) released in a big enough quantity to harm the health or other animals,kill plants or stop them growing properly,damage or disrupt some other aspect of the environment.</b></span></p>
+        <p style="padding-left: 60px;"><span style="color: #ff6600;"><strong>&nbsp;</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #3366ff;"><strong><u>VARIOUS SOURCES OF AIR POLLUTION</u></strong><strong>-</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #3366ff;"><strong>&nbsp; 1.</strong><strong>Mobile sources&nbsp;</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #3366ff;">&nbsp; &nbsp; &nbsp;Example-cars,buses,planes,trucks and trains</span></p>
+        <p style="padding-left: 30px;"><span style="color: #3366ff;">&nbsp; 2.<strong>Stationary sources</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #3366ff;">&nbsp; &nbsp; &nbsp;Example-power plants,oil refineries,industrial facilities and factories</span></p>
+        <p style="padding-left: 30px;"><span style="color: #3366ff;">&nbsp; 3.<strong>Area sources</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #3366ff;">&nbsp; &nbsp; &nbsp;Example-agricultural areas,cities and wood burning fireplace</span></p>
+        <p style="padding-left: 30px;"><span style="color: #3366ff;">&nbsp; 4.<strong>Natural sources</strong></span></p>
+        <p style="padding-left: 30px;">&nbsp; &nbsp;<span style="color: #3366ff;"> &nbsp;Example-wind-blown dust,wildfires,and volcanoes</span></p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p style="padding-left: 30px;"><span style="color: #993366;"><strong><u>EFFECTS OF AIR POLLUTION</u></strong><strong>-</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #993366;">&nbsp;</span></p>
+        <p style="padding-left: 30px;"><span style="color: #993366;"><strong>(a)effect on humans-</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #993366;">Our continual exposure to air pollutants is responsible for the deterioration of human health.It can cause allergies,respiratory and cardiovascular diseases as well as lung damage.</span></p>
+        <p style="padding-left: 30px;"><span style="color: #993366;">&nbsp;</span></p>
+        <p style="padding-left: 30px;"><span style="color: #993366;"><strong>(b)effect on environment-</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #993366;">Air pollution is a major contributor to global warming and climate change.Pollution from human-generated and natural sources is often created in one place and transported through the air. Sometimes chemical reactions in the atmosphere change pollutants before they are deposited. Pollutants in the air can create haze, making it harder to see, and pollutant deposition can have biological effects on natural resources.Air pollution also effects the quality of oxygen which we breathe.Air pollution in the form of carbon dioxide and methane raises the earth&rsquo;s temperature.And ultimately it leads to melting of glaciers and increase in sea level.As per some reports,By 2100 sea levels could rise by a meter displacing 10% of the world&rsquo;s population.</span></p>
+        <p style="padding-left: 30px;">&nbsp;</p>
+        <p><span style="color: #800000;"><strong>&nbsp; &nbsp; &nbsp; &nbsp;<span style="text-decoration: underline;"> STEPS TO PREVENT AIR POLLUTION</span></strong><span style="text-decoration: underline;"><strong>-</strong></span></span></p>
+        <p><span style="color: #800000;"><strong>&nbsp;</strong></span></p>
+        <ul>
+            <li><span style="color: #800000;">&nbsp;&nbsp; Shifting to electric vehicles and hydrogen vehicles(eco-friendly transportation)</span></li>
+            <li><span style="color: #800000;">&nbsp;&nbsp; Prefer public transport over private transport</span></li>
+            <li><span style="color: #800000;">&nbsp;&nbsp; Avoid deforestation and plant more trees as much as possible</span></li>
+            <li><span style="color: #800000;">&nbsp;&nbsp; Reduce fire place and wood stove use</span></li>
+            <li><span style="color: #800000;">&nbsp;&nbsp; Buy electricity generated from renewable energies i.e hydroelectric,wind,or solar power</span></li>
+        </ul>
+        <p><span style="color: #800000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Make an environmental camp and create awareness among common people regarding air pollution.</span></p>
+        <br /><br />
+        <h2 style="text-align: center;"><span style="color: #ff0000;"><strong><span style="text-decoration: underline;">Air Qualtity Index</span></strong></span></h2>
+        <p>&nbsp;</p>
+        <p style="padding-left: 30px;"><strong><span style="color: #339966;">An air quality index (AQI) is used by government agencies to communicate to the public how polluted the air currently is or how polluted it is forecast to become. Public health risks increase as the AQI rises. Different countries have their own air quality indices, corresponding to different national air quality standards. Some of these are the Air Quality Health Index (Canada), the Air Pollution Index (Malaysia), and the Pollutant Standards Index (Singapore).</span></strong></p>
+        <p style="padding-left: 30px;"><strong><span style="color: #339966;">The National Air Quality Index (AQI) was launched in New Delhi on September 17, 2014, under the Swachh Bharat Abhiyan.</span></strong></p>
+        <p style="padding-left: 30px;"><strong><span style="color: #339966;">The Central Pollution Control Board along with State Pollution Control Boards has been operating National Air Monitoring Program (NAMP) covering 240 cities of the country having more than 342 monitoring stations. An Expert Group comprising medical professionals, air quality experts, academia, advocacy groups, and SPCBs was constituted and a technical study was awarded to IIT Kanpur. IIT Kanpur and the Expert Group recommended an AQI scheme in 2014 While the earlier measuring index was limited to three indicators, the new index measures eight parameters. The continuous monitoring systems that provide data on near real-time basis are installed in New Delhi, Mumbai, Pune and Ahmedabad.</span></strong></p>
+        <p style="padding-left: 30px;"><strong><span style="color: #339966;">There are six AQI categories, namely Good, Satisfactory, Moderately polluted, Poor, Very Poor, and Severe. The proposed AQI will consider eight pollutants (PM10, PM2.5, NO2, SO2, CO, O3, NH3, and Pb) for which short-term (up to 24-hourly averaging period) National Ambient Air Quality Standards are prescribed. Based on the measured ambient concentrations, corresponding standards and likely health impact, a sub-index is calculated for each of these pollutants. The worst sub-index reflects overall AQI. Likely health impacts for different AQI categories and pollutants have also been suggested, with primary inputs from the medical experts in the group. The AQI values and corresponding ambient concentrations (health breakpoints) as well as associated likely health impacts for the identified eight pollutants are as follows:</span></strong></p>
+        <p style="padding-left: 30px;">&nbsp;</p>
+        <table class="wikitable" style="height: 317px; background-color: white; border-color: green; margin-left: auto; margin-right: auto;" width="1022" border="1">
+            <caption>AQI Category, Pollutants and Health Breakpoints</caption>
+            <tbody>
+                <tr>
+                    <td style="width: 231px;">AQI Category (Range)</td>
+                    <td style="width: 103px;">PM<sub>10</sub>&nbsp;(24hr)</td>
+                    <td style="width: 108px;">PM<sub>2.5</sub>&nbsp;(24hr)</td>
+                    <td style="width: 97px;">NO<sub>2</sub>&nbsp;(24hr)</td>
+                    <td style="width: 76px;">O<sub>3</sub>&nbsp;(8hr)</td>
+                    <td style="width: 72px;">CO (8hr)</td>
+                    <td style="width: 96px;">SO<sub>2</sub>&nbsp;(24hr)</td>
+                    <td style="width: 98px;">NH<sub>3</sub>&nbsp;(24hr)</td>
+                    <td style="width: 83px;">Pb (24hr)</td>
+                </tr>
+                <tr>
+                    <td style="width: 231px;">Good (0&ndash;50)</td>
+                    <td style="width: 103px;">0&ndash;50</td>
+                    <td style="width: 108px;">0&ndash;30</td>
+                    <td style="width: 97px;">0&ndash;40</td>
+                    <td style="width: 76px;">0&ndash;50</td>
+                    <td style="width: 72px;">0&ndash;1.0</td>
+                    <td style="width: 96px;">0&ndash;40</td>
+                    <td style="width: 98px;">0&ndash;200</td>
+                    <td style="width: 83px;">0&ndash;0.5</td>
+                </tr>
+                <tr>
+                    <td style="width: 231px;">Satisfactory (51&ndash;100)</td>
+                    <td style="width: 103px;">51&ndash;100</td>
+                    <td style="width: 108px;">31&ndash;60</td>
+                    <td style="width: 97px;">41&ndash;80</td>
+                    <td style="width: 76px;">51&ndash;100</td>
+                    <td style="width: 72px;">1.1&ndash;2.0</td>
+                    <td style="width: 96px;">41&ndash;80</td>
+                    <td style="width: 98px;">201&ndash;400</td>
+                    <td style="width: 83px;">0.5&ndash;1.0</td>
+                </tr>
+                <tr>
+                    <td style="width: 231px;">Moderately polluted (101&ndash;200)</td>
+                    <td style="width: 103px;">101&ndash;250</td>
+                    <td style="width: 108px;">61&ndash;90</td>
+                    <td style="width: 97px;">81&ndash;180</td>
+                    <td style="width: 76px;">101&ndash;168</td>
+                    <td style="width: 72px;">2.1&ndash;10</td>
+                    <td style="width: 96px;">81&ndash;380</td>
+                    <td style="width: 98px;">401&ndash;800</td>
+                    <td style="width: 83px;">1.1&ndash;2.0</td>
+                </tr>
+                <tr>
+                    <td style="width: 231px;">Poor (201&ndash;300)</td>
+                    <td style="width: 103px;">251&ndash;350</td>
+                    <td style="width: 108px;">91&ndash;120</td>
+                    <td style="width: 97px;">181&ndash;280</td>
+                    <td style="width: 76px;">169&ndash;208</td>
+                    <td style="width: 72px;">10&ndash;17</td>
+                    <td style="width: 96px;">381&ndash;800</td>
+                    <td style="width: 98px;">801&ndash;1200</td>
+                    <td style="width: 83px;">2.1&ndash;3.0</td>
+                </tr>
+                <tr>
+                    <td style="width: 231px;">Very poor (301&ndash;400)</td>
+                    <td style="width: 103px;">351&ndash;430</td>
+                    <td style="width: 108px;">121&ndash;250</td>
+                    <td style="width: 97px;">281&ndash;400</td>
+                    <td style="width: 76px;">209&ndash;748</td>
+                    <td style="width: 72px;">17&ndash;34</td>
+                    <td style="width: 96px;">801&ndash;1600</td>
+                    <td style="width: 98px;">1200&ndash;1800</td>
+                    <td style="width: 83px;">3.1&ndash;3.5</td>
+                </tr>
+                <tr>
+                    <td style="width: 231px;">Severe (401&ndash;500)</td>
+                    <td style="width: 103px;">430+</td>
+                    <td style="width: 108px;">250+</td>
+                    <td style="width: 97px;">400+</td>
+                    <td style="width: 76px;">748+</td>
+                    <td style="width: 72px;">34+</td>
+                    <td style="width: 96px;">1600+</td>
+                    <td style="width: 98px;">1800+</td>
+                    <td style="width: 83px;">3.5+</td>
+                </tr>
+            </tbody>
+        </table>
+        <br /><br />
+        <center>
+            <table class="wikitable" border="1">
+                <tbody>
+                    <tr>
+                        <th><span style="color: #ff6600;"><strong>AQI</strong></span></th>
+                        <th><span style="color: #ff6600;"><strong>Associated Health Impacts</strong></span></th>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #ff6600;"><strong>Good (0&ndash;50)</strong></span></td>
+                        <td><span style="color: #ff6600;"><strong>Minimal impact</strong></span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #ff6600;"><strong>Satisfactory (51&ndash;100)</strong></span></td>
+                        <td><span style="color: #ff6600;"><strong>May cause minor breathing discomfort to sensitive people.</strong></span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #ff6600;"><strong>Moderately polluted (101&ndash;200)</strong></span></td>
+                        <td><span style="color: #ff6600;"><strong>May cause breathing discomfort to people with lung disease such as asthma, and discomfort to people with heart disease, children and older adults.</strong></span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #ff6600;"><strong>Poor (201&ndash;300)</strong></span></td>
+                        <td><span style="color: #ff6600;"><strong>May cause breathing discomfort to people on prolonged exposure, and discomfort to people with heart disease.</strong></span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #ff6600;"><strong>Very poor (301&ndash;400)</strong></span></td>
+                        <td><span style="color: #ff6600;"><strong>May cause respiratory illness to the people on prolonged exposure. Effect may be more pronounced in people with lung and heart diseases.</strong></span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #ff6600;"><strong>Severe (401&ndash;500)</strong></span></td>
+                        <td><span style="color: #ff6600;"><strong>May cause respiratory impact even on healthy people, and serious health impacts on people with lung/heart disease. The health impacts may be experienced even during light physical activity</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
+        <h2>&nbsp;</h2>
+        <br /><br />
+        <h2 style="text-align:center">(Max) AQI in different countries on 24/4/2020</h2>
+        <br />
+        <div id="map"></div>
+        <style type="text/css">
+            .legend {
+                color: black;
+                width: 100%;
+                font-family: arial;
+                font-size: 14px;
+            }
+
+            .legend_color {
+                display: table;
+                width: 100%;
+                background: white;
+                list-style: none;
+                margin: 0px;
+                padding: 0px;
+            }
+
+                .legend_color li {
+                    width: 20%;
+                    height: 20px;
+                    display: table-cell;
+                }
+
+            .legend_label {
+                display: table;
+                width: 100%;
+                padding: 0px;
+                padding-left: 10%;
+                padding-right: 10%;
+                list-style: none;
+                margin: 0px;
+                box-sizing: border-box;
+            }
+
+                .legend_label li {
+                    width: 25%;
+                    height: 20px;
+                    display: table-cell;
+                    text-align: center;
+                }
+        </style>
+        <div class="legend">
+            <ul class="legend_label">
+                <li>25</li>
+                <li>45</li>
+                <li>70</li>
+                <li>103</li>
+            </ul>
+            <ul class="legend_color">
+                <li style="background-color: #ff6666"></li>
+                <li style="background-color: #ff3333"></li>
+                <li style="background-color: #ff0000"></li>
+                <li style="background-color: #cc0000"></li>
+                <li style="background-color: #990000"></li>
+            </ul>
+        </div>
+        <br /><br />
+    
+        <br /><br />
+              
+        <!---------------------------------------------------------------------------------------------------------------------------------->
+
+        <footer class="footer">
+            <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="static/images/plant.jpg" data-speed="0.8"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="newsletter">
+                            <!--<div class="newsletter_title_container text-center">
+                                <div class="newsletter_title">Subscribe to our newsletter to get the latest trends & news</div>
+                                <div class="newsletter_subtitle">Join our database NOW!</div>
+                            </div>
+                            <div class="newsletter_form_container">
+                                <form action="#" class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between" id="newsletter_form">
+                                    <div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+                                        <div><input type="text" class="newsletter_input newsletter_input_name" id="newsletter_input_name" placeholder="Name" required="required"><div class="input_border"></div></div>
+                                            <div><input type="email" class="newsletter_input newsletter_input_email" id="newsletter_input_email" placeholder="Your e-mail" required="required"><div class="input_border"></div></div>
+                                            </div>
+                                            <div><button class="newsletter_button">subscribe</button></div>
+                        </form>
+                                    </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row footer_contact_row">
+                    <div class="col-xl-10 offset-xl-1">
+                        <div class="row">
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="static/images/sign.svg" alt=""></div>
+                                    <div class="footer_contact_title">give us a call</div>
+                                    <div class="footer_contact_list">
+                                        <ul>
+                                            <li>Office Landline: +44 5567 32 664 567</li>
+                                            <li>Mobile: 7358505477</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="static/images/trekking.svg" alt=""></div>
+                                    <div class="footer_contact_title">come & drop by</div>
+                                    <div class="footer_contact_list">
+                                        <ul style="max-width:190px">
+                                            <li>Indian Institute of Technology Tirupati</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="static/images/around.svg" alt=""></div>
+                                    <div class="footer_contact_title">send us a message</div>
+                                    <div class="footer_contact_list">
+                                        <ul>
+                                            <li>ecologygrp_9@gmail.com</li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col text-center">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made by <a href="https://colorlib.com" target="_blank">Ecology Group 9</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </div>
+        </footer>
+    </div>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>

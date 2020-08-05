@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Hello {{name}} !!!</h1>
+<h2>HTML calculator</h2>
+<br />
+<p>Addition</p>
+<form action="add" method="post">
+
+{% csrf_token %}
+    Enter 1st number : <input type="text" name="num1" /><br />
+    Enter 2nd number : <input type="text" name="num2" /><br />
+    <input type="submit" />
+</form>
+<br />
+<p>Subtraction</p>
+<form action="sub" method="post">
+{% csrf_token %}
+    Enter 1st number : <input type="text" name="num3" /><br />
+    Enter 2nd number : <input type="text" name="num4" /><br />
+    <input type="submit" />
+
+
+</form>
+{% endblock %}

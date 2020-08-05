@@ -1,0 +1,349 @@
+﻿{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+
+                title: {
+                    text: "Increase in worldwide number of Nuclear reactors"
+                },
+                axisX: {
+                    interval: 1
+                },
+                axisY2: {
+                    interlacedColor: "rgba(1,77,101,.2)",
+                    gridColor: "rgba(1,77,101,.1)",
+                    title: "Number of Operable Nuclear reactors"
+                },
+                data: [{
+                    type: "bar",
+                    name: "companies",
+                    axisYType: "secondary",
+                    color: "#014D65",
+                    dataPoints: [
+                        { y: 15, label: "1960" },
+                        { y: 84, label: "1970" },
+                        { y: 245, label: "1980" },
+                        { y: 416, label: "1990" },
+                        { y: 435, label: "2000" },
+                        { y: 441, label: "2010" },
+                        { y: 442, label: "2019" },
+
+                    ]
+                }]
+            });
+            chart.render();
+
+        }
+    </script>
+    <title>Ecology</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Travello template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+    <script src="{% static 'js/mapdata.js' %}"></script>
+    <script src="{% static 'js/worldmap.js' %}"></script>
+
+</head>
+<body>
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            <div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+                                <div class="logo"><a href="">Ecology</a></div>
+                                <nav class="main_nav">
+                                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                                        <li><a href="home">Home</a></li>
+                                        <li><a href="/quiz">Quiz</a></li>
+                                        <li><a href="protohome">Prototypes</a></li>
+                                        <li class="active"><a href="Essay">Essays</a></li>
+                                        {% if user.is_authenticated %}
+                                        <li style="color:white">Hello, {{user.first_name}}</li>
+                                        <li><a href="accounts/logout">Logout</a></li>
+                                        {% else %}
+                                        <li><a href="accounts/register">Register</a></li>
+                                        <li><a href="accounts/login">Login</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                                <div class="header_phone ml-auto">Call us: 7358505477 </div>
+
+                                <!-- Hamburger -->
+
+                                <div class="hamburger ml-auto">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header_social d-flex flex-row align-items-center justify-content-start">
+                <ul class="d-flex flex-row align-items-start justify-content-start">
+                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Menu -->
+
+        <div class="menu">
+            <div class="menu_header d-flex flex-row align-items-center justify-content-start">
+                <div class="menu_logo"><a href="index.html">Travello</a></div>
+                <div class="menu_close_container ml-auto"><div class="menu_close"><div></div><div></div></div></div>
+            </div>
+            <div class="menu_content">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="about.html">Prototypes</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="accounts/logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="accounts/register">Register</a></li>
+                    <li><a href="accounts/login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="menu_social">
+                <div class="menu_phone ml-auto">Call us: 00-56 445 678 33</div>
+                <ul class="d-flex flex-row align-items-start justify-content-start">
+                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Home -->
+
+        <div class="home">
+
+            <!-- Home Slider -->
+            <div class="home_slider_container">
+                <div class="owl-carousel owl-theme home_slider">
+
+                    <!-- Slide -->
+                    <div class="owl-item">
+                        <div class="background_image" style="        background-image: url(static/images/nuclearhome.jpg )"></div>
+                        <div class="home_slider_content_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="home_slider_content">
+                                            <div class="home_title"><h2>Nuclear Energy</h2></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide -->
+                    <div class="owl-item">
+                        <div class="background_image" style="background-image:url(static/images/eco3.jpg)"></div>
+                        <div class="home_slider_content_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="home_slider_content">
+                                            <div class="home_title"><h2>Let's Conserve Energy</h2></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide -->
+                    <div class="owl-item">
+                        <div class="background_image" style="background-image:url(static/images/eco3.jpg)"></div>
+                        <div class="home_slider_content_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="home_slider_content">
+                                            <div class="home_title"><h2>Let's Conserve Energy</h2></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------------------------------------------------------------------------------------------->
+
+        <br /><br />
+        <div class="news" id="news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8">
+                        <div class="news_container">
+
+
+
+
+                            <!-- News Post -->
+                            <div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
+                                <div class="news_post_image"><img src="static/images/nuclear.jpg" alt=""></div>
+                                <div class="news_post_content">
+                                    <div class="news_post_date d-flex flex-row align-items-end justify-content-start">
+                                        <div>8</div>
+                                        <div>April</div>
+                                    </div>
+                                    <div class="news_post_title"><a href="#">Nuclear Energy</a></div>
+                                    <div class="news_post_category">
+                                        <ul>
+                                            <li><a href="#">Energy</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="news_post_text">
+                                        <p>Is nuclear energy being exploited to its potential?</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br /><br />
+
+
+
+        <br /><br /><br />
+        <p style="font-family: &quot;Times New Roman&quot;; text-align: center; margin-bottom: 10px !important;"><span style="font-weight: 700;"><u><span style="color: rgb(97, 189, 109); font-family: &quot;Comic Sans MS&quot;, sans-serif;">NUCLEAR ENERGY!</span></u></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="font-family: &quot;Comic Sans MS&quot;, sans-serif;"><span style="color: rgb(235, 107, 86);">Nuclear energy is the energy that is released by manipulating atoms.currently there are two ways to produce nuclear energy,through fission(the splitting of its atoms) and fusion(fusing them together).</span></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="font-family: &quot;Comic Sans MS&quot;, sans-serif;"><span style="color: rgb(97, 189, 109);">ONLY NUCLEAR ENERGY CAN SAVE THE PLANET!!...</span></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="font-family: &quot;Comic Sans MS&quot;, sans-serif;"><span style="color: rgb(97, 189, 109);">Nuclear power plant operates basically the same way as a fossil fuel plant, with a major difference THE SOURCE OF HEAT</span></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="font-family: &quot;Comic Sans MS&quot;, sans-serif;"><span style="color: rgb(97, 189, 109);">The process that produces the heat in a nuclear plant is the fission or splitting of uranium atoms. The heat boils water to make steam that turns the turbine-generator, just as in a fossil fuel plant to produce electricity.&nbsp;</span></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="font-family: &quot;Comic Sans MS&quot;, sans-serif;"><span style="color: rgb(97, 189, 109);">Power plants need to burn the fuel, thereby emissions of green house gases making our environment polluted and increasing the surface temperature, instead , nuclear plants use the heat given off during fission as fuel</span></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="font-family: &quot;Comic Sans MS&quot;, sans-serif;"><span style="color: rgb(97, 189, 109);">Fission takes place at the centre of the reactor core containing uranium fuel(as ceramic pellets)</span></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="font-family: &quot;Comic Sans MS&quot;, sans-serif;"><span style="color: rgb(97, 189, 109);">The ceramic pellets are about size of your fingertip,but each one produces same amount of energy as 150 gallons of oil.</span></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="font-family: &quot;Comic Sans MS&quot;, sans-serif;"><span style="color: rgb(97, 189, 109);">Nuclear reactors are basically machines that contain and control chain reactions, while releasing heat at a controlled rate.</span></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="font-family: &quot;Comic Sans MS&quot;, sans-serif;"><span style="color: rgb(97, 189, 109);">There are lot more advantages of using nuclear energy, like LOW OPERATING COST(relatively cheap to operate)</span></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="font-family: &quot;Comic Sans MS&quot;, sans-serif;"><span style="color: rgb(97, 189, 109);">CLEAN ENERGY(No emissions),HIGH QUANTITY,RELIABILITY,CONCENTRATION(most concentrated form of energy produces large quantity in short time).</span></span></p><p style="font-family: &quot;Times New Roman&quot;; margin-left: 40px; margin-bottom: 10px !important;"><span style="color: rgb(97, 189, 109); font-family: &quot;Comic Sans MS&quot;, sans-serif;">Unlike other power plants nuclear power plant is not dependent on local sources,can be set up any part of the globe if the uranium were mined and transported in a more efficient way.</span></p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           <p style="font-family:'Comic Sans MS'">Nuclear power is dirty, dangerous and expensive; not carbon-free; and encourages nuclear proliferation. A nuclear power station itself does not emit greenhouse gasses like CO2. Yet nuclear power contributes to climate change; with every step in the whole fuel chain, needed to generate electricity in the end, many energy is used. For instance, the extraction of uranium and the enrichment of uranium are extremely energy-intensive processes. Life-cycle analysis of the whole fuel chain clearly shows the contribution of nuclear power to climate change. In a ground-breaking study Sovacool et al screened 103 lifecycle studies of greenhouse gas equivalent emissions for nuclear power plants to identify a subset of the most current, original, and transparent studies. They calculated that while the range of emissions for nuclear energy over the lifetime of a plant reported from qualified studies examined is from 1.4 grams of carbon dioxide equivalent per kWh (gCO2e/kWh) to 288 gCO2e/kWh, the mean value is 66 gCO2e/kWh.</p>
+        <br /><br />
+        <h2 style="text-align:center">Top 10 Biggest Nuclear reactors in the World</h2>
+        <div id="map"></div>
+        <br /><br />
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <br /><br />
+
+        <!---------------------------------------------------------------------------------------------------------------------------------->
+
+        <footer class="footer">
+            <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="static/images/plant.jpg" data-speed="0.8"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="newsletter">
+                            <!--<div class="newsletter_title_container text-center">
+                            <div class="newsletter_title">Subscribe to our newsletter to get the latest trends & news</div>
+                            <div class="newsletter_subtitle">Join our database NOW!</div>
+                            </div>
+                        <div class="newsletter_form_container">
+                            <form action="#" class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between" id="newsletter_form">
+                                <div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+                                    <div><input type="text" class="newsletter_input newsletter_input_name" id="newsletter_input_name" placeholder="Name" required="required"><div class="input_border"></div></div>
+                                    <div><input type="email" class="newsletter_input newsletter_input_email" id="newsletter_input_email" placeholder="Your e-mail" required="required"><div class="input_border"></div></div>
+                                </div>
+                                <div><button class="newsletter_button">subscribe</button></div>
+                            </form>
+                        </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row footer_contact_row">
+                    <div class="col-xl-10 offset-xl-1">
+                        <div class="row">
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="static/images/sign.svg" alt=""></div>
+                                    <div class="footer_contact_title">give us a call</div>
+                                    <div class="footer_contact_list">
+                                        <ul>
+                                            <li>Office Landline: +44 5567 32 664 567</li>
+                                            <li>Mobile: 7358505477</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="static/images/trekking.svg" alt=""></div>
+                                    <div class="footer_contact_title">come & drop by</div>
+                                    <div class="footer_contact_list">
+                                        <ul style="max-width:190px">
+                                            <li>Indian Institute of Technology Tirupati</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="static/images/around.svg" alt=""></div>
+                                    <div class="footer_contact_title">send us a message</div>
+                                    <div class="footer_contact_list">
+                                        <ul>
+                                            <li>ecologygrp_9@gmail.com</li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col text-center">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made by <a href="https://colorlib.com" target="_blank">Ecology Group 9</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </div>
+        </footer>
+    </div>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+   
+</body>
+</html>

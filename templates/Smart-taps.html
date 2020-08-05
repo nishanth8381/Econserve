@@ -1,0 +1,493 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            var chart1 = new CanvasJS.Chart("chartContainer1", {
+                animationEnabled: true,
+                title: {
+                    text: "Effect of Hy-no technique on daily water consumption"
+                },
+                axisY: {
+                    title: "Litres"
+                },
+                legend: {
+                    cursor: "pointer",
+                    itemclick: toggleDataSeries
+                },
+                toolTip: {
+                    shared: true,
+                    content: toolTipFormatter
+                },
+                data: [{
+                    type: "bar",
+                    showInLegend: true,
+                    name: "Water consumed before",
+                    color: "red",
+                    dataPoints: [
+                        { y: 300, label: "Brushing Teeth" },
+                        { y: 9250, label: "Bath/Flush" },
+                        { y: 6500, label: "Washing Machine" },
+                        { y: 800, label: "Hand/Face wash" },
+                        { y: 460, label: "Water bottle" },
+
+                    ]
+                },
+                {
+                    type: "bar",
+                    showInLegend: true,
+                    name: "Water consumed after",
+                    color: "green",
+                    dataPoints: [
+                        { y: 200, label: "Brushing Teeth" },
+                        { y: 9000, label: "Bath/Flush" },
+                        { y: 6500, label: "Washing Machine" },
+                        { y: 750, label: "Hand/Face wash" },
+                        { y: 450, label: "Water bottle" },
+
+                    ]
+                },
+                ]
+            });
+            chart1.render();
+
+            function toolTipFormatter(e) {
+                var str = "";
+                var total = 0;
+                var diff = 0;
+                var str3;
+                var str2;
+                for (var i = 0; i < e.entries.length; i++) {
+                    var str1 = "<span style= \"color:" + e.entries[i].dataSeries.color + "\">" + e.entries[i].dataSeries.name + "</span>: <strong>" + e.entries[i].dataPoint.y + "</strong> <br/>";
+                    total = e.entries[i].dataPoint.y + total;
+                    str = str.concat(str1);
+                }
+                diff = e.entries[0].dataPoint.y - e.entries[1].dataPoint.y;
+                str2 = "<strong>" + e.entries[0].dataPoint.label + "</strong> <br/>";
+                str3 = "<span style = \"color:Tomato\">Water saved: </span><strong>" + diff + "</strong><br/>";
+                return (str2.concat(str)).concat(str3);
+            }
+
+            function toggleDataSeries(e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                }
+                else {
+                    e.dataSeries.visible = true;
+                }
+                chart1.render();
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+                exportEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Daily water consumed per student"
+                },
+                legend: {
+                    cursor: "pointer",
+                    itemclick: explodePie
+                },
+                data: [{
+                    type: "pie",
+                    showInLegend: true,
+                    toolTipContent: "{name}: <strong>{y}%</strong>",
+                    indexLabel: "{name} - {y}%",
+                    dataPoints: [
+                        { y: 53, name: "Bath/Flush", exploded: true },
+                        { y: 37, name: "Washing Machine" },
+                        { y: 5, name: "Hand/Face wash" },
+                        { y: 3, name: "Water Bottle" },
+                        { y: 2, name: "Brushing Teeth" },
+
+                    ]
+                }]
+            });
+            chart2.render();
+        }
+
+        function explodePie(e) {
+            if (typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+                e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+            } else {
+                e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+            }
+            e.chart2.render();
+
+        }
+    </script>
+    <title>Ecology</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Travello template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+</head>
+<body>
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            <div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+                                <div class="logo"><a href="">Ecology</a></div>
+                                <nav class="main_nav">
+                                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                                        <li><a href="/home">Home</a></li>
+                                        <li><a href="/quiz">Quiz</a></li>
+                                        <li class="active"><a href="protohome">Prototypes</a></li>
+                                        <li><a href="Essay">Essays</a></li>
+                                        {% if user.is_authenticated %}
+                                        <li style="color:white">Hello, {{user.first_name}}</li>
+                                        <li><a href="/accounts/logout">Logout</a></li>
+                                        {% else %}
+                                        <li><a href="/accounts/register">Register</a></li>
+                                        <li><a href="/accounts/login">Login</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                                <div class="header_phone ml-auto">Call us: 7358505477 </div>
+
+                                <!-- Hamburger -->
+
+                                <div class="hamburger ml-auto">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header_social d-flex flex-row align-items-center justify-content-start">
+                <ul class="d-flex flex-row align-items-start justify-content-start">
+                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Menu -->
+
+        <div class="menu">
+            <div class="menu_header d-flex flex-row align-items-center justify-content-start">
+                <div class="menu_logo"><a href="index.html">Travello</a></div>
+                <div class="menu_close_container ml-auto"><div class="menu_close"><div></div><div></div></div></div>
+            </div>
+            <div class="menu_content">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="about.html">Prototypes</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="accounts/logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="accounts/register">Register</a></li>
+                    <li><a href="accounts/login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="menu_social">
+                <div class="menu_phone ml-auto">Call us: 00-56 445 678 33</div>
+                <ul class="d-flex flex-row align-items-start justify-content-start">
+                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Home -->
+
+        <div class="home">
+
+            <!-- Home Slider -->
+            <div class="home_slider_container">
+                <div class="owl-carousel owl-theme home_slider">
+
+                    <!-- Slide -->
+                    <div class="owl-item">
+                        <div class="background_image" style="        background-image: url(static/images/taphome.jpg )"></div>
+                        <div class="home_slider_content_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="home_slider_content">
+                                            <div class="home_title"><h2>Smart Taps</h2></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide -->
+                    <div class="owl-item">
+                        <div class="background_image" style="background-image:url(static/images/eco3.jpg)"></div>
+                        <div class="home_slider_content_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="home_slider_content">
+                                            <div class="home_title"><h2>Let's Conserve Energy</h2></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide -->
+                    <div class="owl-item">
+                        <div class="background_image" style="background-image:url(static/images/eco3.jpg)"></div>
+                        <div class="home_slider_content_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="home_slider_content">
+                                            <div class="home_title"><h2>Let's Conserve Energy</h2></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------------------------------------------------------------------------------------------->
+
+        <br /><br />
+        <h1 style="text-align: center;"><span style="text-decoration: underline; color: #0000ff;"><strong>Smart Taps</strong></span></h1>
+        <h2 style="text-align: center;"><span style="text-decoration: underline; color: #0000ff;"><strong>Hy-no Technique</strong></span></h2>
+        <p style="padding-left: 30px;"><strong><span style="color: #ff6600;">Whether we notice it or not all of us waste a lot of water daily while performing our day to day activities. Be it leaving the tap running while brushing our teeth to leaving buckets overflowing while taking a bath, we waste a lot of water. So how do we reduce this wastage. Presenting the Hy-no (Hydro-Arduino) technique</span></strong></p>
+        <br /><br />
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <!--<ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+
+        </ol>-->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/p24.png'%}" class="d-block w-100" alt="..." style="width:400px;height:500px;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/p21.png'%}" class="d-block w-100" alt="..." style="width:400px;height:500px;">
+                </div>
+
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <br /><br />
+        <h2 style="text-align: center;"><span style="text-decoration: underline;"><span style="color: #0000ff; text-decoration: underline;">Water Saving Technique using Arduino and Ultrasonic sensors (Hy-no Technique)</span></span></h2>
+        <p>&nbsp;</p>
+        <p style="padding-left: 30px;"><strong><span style="text-decoration: underline;"><span style="color: #0000ff; text-decoration: underline;">Case Study -1 (IITTP):</span></span></strong></p>
+        <p style="padding-left: 30px;"><strong><span style="text-decoration: underline;"><span style="color: #0000ff; text-decoration: underline;">Total water consumption per day in one hostel: (About 150 students)</span></span></strong></p>
+        <div style="align-content:center">
+            <table style="width: 1500px;" border="1">
+                <tbody>
+                    <tr style="height: 13px;">
+                        <td style="width: 304px; height: 13px;"><span style="text-decoration: underline;"><strong><span style="color: #ff6600; text-decoration: underline;">Purpose</span></strong></span></td>
+                        <td style="width: 398px; height: 13px;"><span style="text-decoration: underline;"><strong><span style="color: #ff0000; text-decoration: underline;">Water consumed without Hy-no Technique (L)</span></strong></span></td>
+                        <td style="width: 325px; height: 13px;"><span style="text-decoration: underline;"><strong><span style="color: #008000; text-decoration: underline;">Water consumed after Hy-no technique implemented (L)</span></strong></span></td>
+                    </tr>
+                    <tr style="height: 13px;">
+                        <td style="width: 304px; height: 13px;"><strong><span style="color: #ff6600;">Brushing Teeth</span></strong></td>
+                        <td style="width: 398px; height: 13px;"><strong><span style="color: #ff0000;">300</span></strong></td>
+                        <td style="width: 325px; height: 13px;"><strong><span style="color: #008000;">200</span></strong></td>
+                    </tr>
+                    <tr style="height: 13.375px;">
+                        <td style="width: 304px; height: 13.375px;"><strong><span style="color: #ff6600;">Bath/Flush</span></strong></td>
+                        <td style="width: 398px; height: 13.375px;"><strong><span style="color: #ff0000;">9250&nbsp;</span></strong></td>
+                        <td style="width: 325px; height: 13.375px;"><strong><span style="color: #008000;">9000&nbsp;</span></strong></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr style="height: 13px;">
+                        <td style="width: 304px; height: 13px;"><strong><span style="color: #ff6600;">Washing Machine</span></strong></td>
+                        <td style="width: 398px; height: 13px;"><strong><span style="color: #ff0000;">6500&nbsp;</span></strong></td>
+                        <td style="width: 325px; height: 13px;"><strong><span style="color: #008000;">6500&nbsp;</span></strong></td>
+                    </tr>
+                    <tr style="height: 13px;">
+                        <td style="width: 304px; height: 13px;"><strong><span style="color: #ff6600;">Hand/Face wash</span></strong></td>
+                        <td style="width: 398px; height: 13px;"><strong><span style="color: #ff0000;">800&nbsp;</span></strong></td>
+                        <td style="width: 325px; height: 13px;"><strong><span style="color: #008000;">750</span></strong></td>
+                    </tr>
+                    <tr style="height: 13px;">
+                        <td style="width: 304px; height: 13px;"><strong><span style="color: #ff6600;">Water Bottle</span></strong></td>
+                        <td style="width: 398px; height: 13px;"><strong><span style="color: #ff0000;">460&nbsp;</span></strong></td>
+                        <td style="width: 325px; height: 13px;"><strong><span style="color: #008000;">450&nbsp;</span></strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="padding-left: 30px;"><span style="color: #ff0000;"><strong>Water saved in 1 day:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;410 Litres </strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #ff0000;"><strong>Water saved in a year(2 sems): 98400 Litres</strong></span></p>
+        <p style="padding-left: 30px;">&nbsp;</p>
+        <blockquote>
+            <p style="padding-left: 30px; text-align: center;"><span style="color: #ff6600;"><strong>If this technique is implemented in all 5 hostels of full capacity we could save around 4,92,000 Litres of water in a year!</strong></span></p>
+        </blockquote>
+        <br /><br />
+
+        <h2 style="text-align:center">Data Analysis</h2>
+
+
+        <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+        <br /><br />
+        <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <br /><br />
+        <br /><br /><br />
+        <p style="padding-left: 30px;"><span style="text-decoration: underline; color: #0000ff;"><strong>Case Study -2&nbsp;</strong></span></p>
+        <p style="padding-left: 30px;"><span style="text-decoration: underline; color: #0000ff;"><strong>Consider that we implemented this technique in a huge institution where there are around 10,000 students in hostels&nbsp;</strong></span></p>
+        <p style="padding-left: 30px;">&nbsp;</p>
+        <p style="padding-left: 30px;"><span style="color: #ff0000;"><strong>Water saved per day :&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;27,000&nbsp; &nbsp; &nbsp; Litres</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #ff0000;"><strong>LitresWater saved in a year:&nbsp; &nbsp; &nbsp;64,80,000 Litres</strong></span></p>
+        <p style="padding-left: 30px;">&nbsp;</p>
+        <p style="padding-left: 30px;"><span style="color: #99cc00;"><strong>We end up saving 64,80,000 Litres!</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #ff6600;"><em><strong>The standard norm for domestic water usage in India is 135 litres per capita per day (lpcd), prescribed by the Central Public Health and Environmental Engineering Organisation.</strong></em></span></p>
+        <p style="padding-left: 30px;"><span style="color: #99cc00;"><strong>So these 64,80,000 Litres of water can satisfy the water requirements of 48,000 people who don't have a single drop of water for a day. O</strong></span><span style="color: #99cc00;"><strong>r Lets say the average lifetime of an individual is 65 years. Then these 64,80,000 Litres would satisfy the domestic water requirements of 2&nbsp;individuals for their entire lifetime!</strong></span></p>
+        <p style="padding-left: 30px;"><span style="color: #99cc00;"><strong>All this water is saved when just implemented in one institute.&nbsp;Just think of how much water we could save if we implement on a large scale !</strong></span></p>
+
+        <br /><br />
+       
+        <br /><br />
+        <!---------------------------------------------------------------------------------------------------------------------------------->
+
+        <footer class="footer">
+            <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="static/images/plant.jpg" data-speed="0.8"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="newsletter">
+                            <!--<div class="newsletter_title_container text-center">
+                            <div class="newsletter_title">Subscribe to our newsletter to get the latest trends & news</div>
+                            <div class="newsletter_subtitle">Join our database NOW!</div>
+                            </div>
+                        <div class="newsletter_form_container">
+                            <form action="#" class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between" id="newsletter_form">
+                                <div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+                                    <div><input type="text" class="newsletter_input newsletter_input_name" id="newsletter_input_name" placeholder="Name" required="required"><div class="input_border"></div></div>
+                                    <div><input type="email" class="newsletter_input newsletter_input_email" id="newsletter_input_email" placeholder="Your e-mail" required="required"><div class="input_border"></div></div>
+                                </div>
+                                <div><button class="newsletter_button">subscribe</button></div>
+                            </form>
+                        </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row footer_contact_row">
+                    <div class="col-xl-10 offset-xl-1">
+                        <div class="row">
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="static/images/sign.svg" alt=""></div>
+                                    <div class="footer_contact_title">give us a call</div>
+                                    <div class="footer_contact_list">
+                                        <ul>
+                                            <li>Office Landline: +44 5567 32 664 567</li>
+                                            <li>Mobile: 7358505477</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="static/images/trekking.svg" alt=""></div>
+                                    <div class="footer_contact_title">come & drop by</div>
+                                    <div class="footer_contact_list">
+                                        <ul style="max-width:190px">
+                                            <li>Indian Institute of Technology Tirupati</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer Contact Item -->
+                            <div class="col-xl-4 footer_contact_col">
+                                <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                    <div class="footer_contact_icon"><img src="static/images/around.svg" alt=""></div>
+                                    <div class="footer_contact_title">send us a message</div>
+                                    <div class="footer_contact_list">
+                                        <ul>
+                                            <li>ecologygrp_9@gmail.com</li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col text-center">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made by <a href="https://colorlib.com" target="_blank">Ecology Group 9</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </div>
+        </footer>
+    </div>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
