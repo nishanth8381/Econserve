@@ -1,4 +1,4 @@
-# Ecology-project
+# Econserve
 A website to create awareness about energy conservation 
 This project is a part of our ecology course at IITTP and the aim of the project is to create awarness about power saving and renewable sources of Energy.
 
