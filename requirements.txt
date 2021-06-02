@@ -103,7 +103,7 @@ tornado==6.0.4
 tox==3.18.1
 traitlets==4.3.3
 twint==2.1.20
-urllib3==1.25.9
+urllib3==1.26.5
 virtualenv==20.0.28
 wcwidth==0.2.4
 webencodings==0.5.1
