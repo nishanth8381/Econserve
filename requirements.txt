@@ -74,7 +74,7 @@ prometheus-client==0.8.0
 prompt-toolkit==3.0.5
 psycopg2==2.8.5
 py==1.9.0
-pycares==3.1.1
+pycares==4.2.0
 pycparser==2.20
 Pygments==2.6.1
 pylint==2.5.2
